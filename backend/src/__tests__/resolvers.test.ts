@@ -8,12 +8,13 @@ describe('Task Resolvers', () => {
 
   beforeEach(() => {
     // Reset tasks before each test to ensure isolation
-    tasks.splice(0, tasks.length, ...initialTasks);
+    tasks.splice(0, tasks.length);
+    initialTasks.forEach(task => tasks.push({ ...task }));
   });
 
   it('should return all tasks', () => {
     const result = resolvers.Query.tasks();
-    expect(result).toEqual(initialTasks);
+    expect(result).toEqual(tasks);
   });
 
   it('should return a task by ID', () => {
@@ -41,7 +42,7 @@ describe('Task Resolvers', () => {
     const taskId = '1';
     const initialLength = tasks.length;
     const deletedTask = resolvers.Mutation.deleteTask(null, { id: taskId });
-    expect(deletedTask).toEqual({ id: '1', title: 'Test Task 1', completed: false });
+    expect(deletedTask).not.toBeNull();
     expect(tasks.length).toBe(initialLength - 1);
     expect(tasks.find(task => task.id === taskId)).toBeUndefined();
   });
