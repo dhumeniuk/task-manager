@@ -4,7 +4,7 @@ interface Task {
   completed: boolean;
 }
 
-let tasks: Task[] = [
+export let tasks: Task[] = [
   { id: '1', title: 'Learn GraphQL', completed: false },
   { id: '2', title: 'Build a Task Manager', completed: false },
 ];
@@ -28,13 +28,17 @@ export const resolvers = {
       const task = tasks.find(task => task.id === id);
       if (task) {
         task.completed = !task.completed;
+        return task;
       }
-      return task;
+      return null;
     },
     deleteTask: (parent: any, { id }: { id: string }) => {
-      const initialLength = tasks.length;
-      tasks = tasks.filter(task => task.id !== id);
-      return initialLength !== tasks.length ? { id } : null; // Return a dummy object with id if deleted, or null if not found
+      const index = tasks.findIndex(task => task.id === id);
+      if (index > -1) {
+        const [deletedTask] = tasks.splice(index, 1);
+        return deletedTask;
+      }
+      return null;
     },
   },
 };
