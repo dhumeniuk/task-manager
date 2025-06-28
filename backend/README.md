@@ -29,7 +29,7 @@ To start the GraphQL API server, run:
 npm start
 ```
 
-The server will typically run on `http://localhost:4000/`.
+The server will run on `http://localhost:4001/` by default. You can change the port by setting the `PORT` environment variable.
 
 ## Testing
 

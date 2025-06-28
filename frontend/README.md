@@ -30,4 +30,8 @@ npm start
 
 This will open the Expo developer tools in your browser, from which you can run the app on an emulator, simulator, or your physical device.
 
-**Note:** Ensure your backend server is running before starting the frontend application.
+**Note:** Ensure your backend server is running before starting the frontend application. The backend now runs on port 4001 by default (see backend/README.md).
+
+## Features
+- Input validation when adding a new task (prevents empty or whitespace-only tasks)
+- Type safety for task items

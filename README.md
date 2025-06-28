@@ -13,3 +13,8 @@ To get started with this project, please follow the instructions in each respect
 
 1.  **Backend Setup:** Navigate to the `backend/` directory and follow the instructions in its `README.md`.
 2.  **Frontend Setup:** Navigate to the `frontend/` directory and follow the instructions in its `README.md`.
+
+## Recent Updates
+- Backend now runs on port 4001 by default (configurable via `PORT` environment variable)
+- Frontend validates input when adding a new task
+- Type safety improvements for task items
