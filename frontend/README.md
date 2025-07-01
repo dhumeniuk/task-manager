@@ -28,34 +28,21 @@ To start the React Native development server, run:
 npm start
 ```
 
-This will open the Expo developer tools in your browser, from which you can run the app on an emulator, simulator, or your physical device.
+This will open the Expo developer tools in your browser.
 
-**Note:** Ensure your backend server is running before starting the frontend application. The backend now runs on port 4001 by default (see backend/README.md).
+## Running on Your iOS Device (Free, No Build Required)
 
-## Building an iOS App for Your Device
+1. **Install the Expo Go app** from the App Store on your iPhone.
+2. **Start the development server:**
+   ```sh
+   npm start
+   ```
+3. **Scan the QR code** shown in the Expo developer tools using the Expo Go app on your device.
+4. Your app will load instantly on your iPhone.
 
-To create an iOS image (IPA) that you can install on your device:
-
-1. Install EAS CLI:
-   ```sh
-   npm install -g eas-cli
-   ```
-2. Login to Expo:
-   ```sh
-   eas login
-   ```
-3. Configure EAS for your project:
-   ```sh
-   eas build:configure
-   ```
-4. Start an iOS build:
-   ```sh
-   eas build -p ios --profile development
-   ```
-   Follow the prompts to set up your Apple Developer credentials.
-5. Download and install the IPA:
-   - Once the build is complete, Expo will provide a link to download the IPA file.
-   - You can install the IPA on your device using TestFlight, Xcode, or AltStore.
+**Note:**
+- This method works as long as you do not use custom native code or Expo modules not supported by Expo Go.
+- Ensure your backend server is running before starting the frontend application. The backend now runs on port 4001 by default (see backend/README.md).
 
 ## Features
 - Input validation when adding a new task (prevents empty or whitespace-only tasks)
