@@ -5,6 +5,13 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+// Initialize Apollo Client
+const client = new ApolloClient({
+  uri: 'http://localhost:4001/', // Updated to match backend port
+  cache: new InMemoryCache(),
+});
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -18,12 +25,14 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
